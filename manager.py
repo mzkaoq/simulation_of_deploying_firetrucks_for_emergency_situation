@@ -11,7 +11,6 @@ from strategies import DefaultStrategies, StrategyMZ, StrategyPZ
 class Manager:
     def __init__(self):
         self._fire_stations = []
-        self._event = None
         self._observer = Observer()
         self._sorted_list = []
         for department in fire_departments:
@@ -24,22 +23,22 @@ class Manager:
             cord_x = random.uniform(49.95855025648944, 50.154564013341734)
             cord_y = random.uniform(19.688292482742394, 20.02470275868903)
             if random.uniform(0, 1) < 0.7:
-                self._event = MZ(cord_x, cord_y)
+                event = MZ(cord_x, cord_y)
                 print("nowa akcja MZ")
             else:
-                self._event = PZ(cord_x, cord_y)
+                event = PZ(cord_x, cord_y)
                 print("nowa akcja PZ")
-            self._sorted_list = self._observer.collect_info(self._fire_stations,self._event)
+            self._sorted_list = self._observer.collect_info(self._fire_stations, event)
             print("dostepne wozy",len(self._sorted_list))
             iterator = iter(Iterator(self._sorted_list))
             """
             for i in self._sorted_list:
                 print(i)
             """
-            if isinstance(self._event,MZ) == True:
-                StrategyMZ(self._event,iterator)
+            if isinstance(event, MZ) == True:
+                StrategyMZ(event, iterator)
             else:
-                StrategyPZ(self._event,iterator)
+                StrategyPZ(event, iterator)
 
 
 
