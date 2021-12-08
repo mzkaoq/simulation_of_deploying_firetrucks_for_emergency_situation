@@ -18,6 +18,7 @@ class FireDepartment:
     def fire_trucks(self):
         return self._fire_trucks
 
+    """
     def number_of_fire_trucks(self):
         num = 0
         for truck in self._fire_trucks:
@@ -26,6 +27,7 @@ class FireDepartment:
             else:
                 pass
         return num
+    """
 
 class Truck:
     def __init__(self):
@@ -55,9 +57,6 @@ class FireTruck(ABC):
     def going_from(self):
         pass
 
-    @property
-    def department(self):
-        return self._department
 
 class FreeTruck(FireTruck):
     def busy(self):
